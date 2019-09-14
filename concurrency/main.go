@@ -29,6 +29,13 @@ func Test() {
 	timeout := 8
 	// 创建N个任务管道，用来接收各个并发任务的完成结果
 	chs := make([]chan string, len(input))
+	defer func() {
+		for _, c := range chs {
+			if c != nil {
+				close(c)
+			}
+		}
+	}()
 	sTime := time.Now()
 	fmt.Println("start")
 	for i, sleeptime := range input {

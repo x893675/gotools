@@ -7,9 +7,13 @@
 ## Table of Contents
 
 - [google-two-factor-auth](#google-two-factor-auth)
+- [concurrency](#concurrency)
 
 ## [google-two-factor-auth](google-two-factor-auth/README.md)
 
 1. 了解totp相关概念
 2. 对接`google Authenticator`
 
+## [concurrency](concurrency/README.md)
+
+1. 了解golang并发相关概念及用法
