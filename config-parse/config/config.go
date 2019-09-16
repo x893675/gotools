@@ -35,7 +35,8 @@ func Init(cfgFile string) {
 	viper.SetConfigName("config")
 	viper.AddConfigPath(".")
 	replacer := strings.NewReplacer(".", "_")
-	viper.BindEnv("log.level", "CFG_LOG_LEVEL")
+	//viper.BindEnv("log.level", "CFG_LOG_LEVEL")
+	viper.SetEnvKeyReplacer(replacer)
 	viper.AutomaticEnv()
 	if cfgFile != "" {
 		viper.SetConfigFile(cfgFile)
