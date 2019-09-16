@@ -14,3 +14,7 @@ var printCmd = &cobra.Command{
 		config.Print()
 	},
 }
+
+func init() {
+	rootCmd.AddCommand(printCmd)
+}

@@ -30,8 +30,11 @@ func Init(cfgFile string) {
 	capnslog.SetGlobalLogLevel(capnslog.WARNING)
 	capnslog.SetFormatter(capnslog.NewPrettyFormatter(os.Stdout, false))
 
+	viper.SetEnvPrefix("cfg")
 	viper.SetConfigName("config")
 	viper.AddConfigPath(".")
+	viper.BindEnv("log.level", "CFG_LOG_LEVEL")
+	viper.AutomaticEnv()
 	if cfgFile != "" {
 		viper.SetConfigFile(cfgFile)
 	}
@@ -51,10 +54,10 @@ func values() Config {
 	return Config{
 		RunMode: viper.GetString("run_mode"),
 		Log: Log{
-			Level:      viper.GetInt("level"),
-			Format:     viper.GetString("format"),
-			Output:     viper.GetString("output"),
-			OutputFile: viper.GetString("output_file"),
+			Level:      viper.GetInt("log.level"),
+			Format:     viper.GetString("log.format"),
+			Output:     viper.GetString("log.output"),
+			OutputFile: viper.GetString("log.output_file"),
 		},
 	}
 }
