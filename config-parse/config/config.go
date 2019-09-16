@@ -3,6 +3,7 @@ package config
 import (
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/coreos/pkg/capnslog"
 	"github.com/spf13/viper"
@@ -33,6 +34,7 @@ func Init(cfgFile string) {
 	viper.SetEnvPrefix("cfg")
 	viper.SetConfigName("config")
 	viper.AddConfigPath(".")
+	replacer := strings.NewReplacer(".", "_")
 	viper.BindEnv("log.level", "CFG_LOG_LEVEL")
 	viper.AutomaticEnv()
 	if cfgFile != "" {
